@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require "em-proxy"
+
+Proxy.start(:host => ARGV.shift, :debug => true) do |conn|
+  ARGV.each_with_index do |backend,i|
+    hostname, port = backend.split(":")
+    conn.server "backend_#{i}".intern, :host => hostname, :port => port.to_i
+  end
+
+  conn.on_data do |data|
+    data
+  end
+end

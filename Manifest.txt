@@ -1,0 +1,10 @@
+History.txt
+Manifest.txt
+README.md
+Rakefile
+bin/socket-duplex-proxy
+lib/rack/socket_duplex.rb
+test/test_rack_socket_duplex.rb
+examples/lobster.ru
+examples/forwarding-proxy
+.gitignore
