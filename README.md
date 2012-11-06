@@ -4,7 +4,7 @@
 
 ## DESCRIPTION
 
-`Rack::SocketDuplex` is Rack middleware that duplexes HTTP traffic to a unix socket.
+`Rack::SocketDuplex` is Rack middleware that duplexes HTTP traffic to a unix socket. The primary use case is to subsequently forward this traffic to load test a new production environment (see **EXAMPLE** section).
 
 ## FEATURES/PROBLEMS
 
