@@ -18,7 +18,7 @@ Add `Rack::SocketDuplex` as middleware in your `config.ru` or where appropriate:
 
     use Rack::SocketDuplex, "/tmp/rack-socket_duplex"
 
-Use `netcat` or `em-proxy` to listen to the traffic, and forward it to a new production environment (load testing) or log it to a file.
+Use `nc` or `em-proxy` to listen to the traffic, and forward it to a new production environment (load testing) or log it to a file.
 
 To add `Rack::SocketDuplex` to Rails, add the following line to `config/application.rb` or a specific environment (e.g. `config/environments/development.rb`):
 
@@ -34,7 +34,7 @@ Then open 127.0.0.1:3000 in a browser. To observe what's being written on the so
 
     nc -klU /tmp/rack-socket_duplex-test
 
-To forward the data other servers efficiently, use `forwarding-proxy` from the examples-folder (requries `em-proxy'):
+To forward the data efficiently to other servers, use `forwarding-proxy` from the examples-folder (requries `em-proxy'):
 
     forwarding-proxy.rb /tmp/rack-socket_duplex-test example.com
 
