@@ -1,66 +1,67 @@
-= rack-socket_duplex
+# `rack-socket_duplex`
 
-* http://github.com/andreas/rack-socket_duplex
+[http://github.com/andreas/rack-socket_duplex]()
 
-== DESCRIPTION:
+## DESCRIPTION
 
 `Rack::SocketDuplex` is Rack middleware that duplexes HTTP traffic to a unix socket.
 
-== FEATURES/PROBLEMS:
+## FEATURES/PROBLEMS
 
 * Fairly low overhead (~5ms on small tests with a `em-proxy` server listening on the unix socket).
 * Ignores SSL traffic.
 * Converts Rack env to a raw HTTP request. The conversion tries to be accurate, but there might be discrepancies.
 
-== SYNOPSIS:
+## SYNOPSIS
 
 Add `Rack::SocketDuplex` as middleware in your `config.ru` or where appropriate:
 
-  use Rack::SocketDuplex, "/tmp/rack-socket_duplex"
+    use Rack::SocketDuplex, "/tmp/rack-socket_duplex"
 
 Use `netcat` or `em-proxy` to listen to the traffic, and forward it to a new production environment (load testing) or log it to a file.
 
 To add `Rack::SocketDuplex` to Rails, add the following line to `config/application.rb` or a specific environment (e.g. `config/environments/development.rb`):
 
-  config.middleware.use "Rack::SocketDuplex", "/tmp/rack-socket_duplex"
+    config.middleware.use "Rack::SocketDuplex", "/tmp/rack-socket_duplex"
 
-== EXAMPLE:
+## EXAMPLE
 
 See `examples/lobster.ru`. Run the example app with the following command:
 
-  $ rackup lobster.ru -p 3000
+    rackup lobster.ru -p 3000
 
 Then open 127.0.0.1:3000 in a browser. To observe what's being written on the socket, run the following command:
 
-  $ nc -klU /tmp/rack-socket_duplex-test
+    nc -klU /tmp/rack-socket_duplex-test
 
 To forward the data other servers efficiently, use `forwarding-proxy` from the examples-folder (requries `em-proxy'):
 
-  $ forwarding-proxy.rb /tmp/rack-socket_duplex-test example.com
+    forwarding-proxy.rb /tmp/rack-socket_duplex-test example.com
 
-== REQUIREMENTS:
+## REQUIREMENTS
 
 * Ruby 1.9
+* Optional: `em-proxy`-gem to use `examples/forwarding-proxy`
 
-== INSTALL:
+## INSTALL
 
 Add to bundler
 
-  gem "rack-socket_duplex", git: "https://github.com/andreas/rack-socket_duplex"
+    gem "rack-socket_duplex", git: "https://github.com/andreas/rack-socket_duplex"
 
 or install as gem
 
-   gem install rack-socket_duplex
+    gem install rack-socket_duplex
 
-== DEVELOPERS:
+## DEVELOPERS
 
 After checking out the source, run:
 
-  rake test
+    rake test
 
 This task will run the tests/specs.
 
-== LICENSE:
+## LICENSE
 
 (The MIT License)
 
